@@ -16,7 +16,7 @@ export class Character {
   species: string
   type: string
   gender: string
-  _image: string
+  image: string
   created: string
   constructor(data: CharacterData) {
     this.id = data.id
@@ -25,7 +25,7 @@ export class Character {
     this.species = data.species
     this.gender = data.gender
     this.type = data.type
-    this._image = data.image
+    this.image = data.image
     this.created = data.created
   }
 
