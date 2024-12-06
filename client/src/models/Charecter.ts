@@ -16,7 +16,7 @@ export class Character {
   species: string
   type: string
   gender: string
-  image: string
+  _image: string
   created: string
   constructor(data: CharacterData) {
     this.id = data.id
@@ -25,7 +25,11 @@ export class Character {
     this.species = data.species
     this.gender = data.gender
     this.type = data.type
-    this.image = data.image
+    this._image = data.image
     this.created = data.created
+  }
+
+  get backdropImgUrl() {
+    return `url(https://rickandmortyapi.com/api/character/avatar/${this.id}.jpeg)`
   }
 }
