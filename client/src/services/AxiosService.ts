@@ -6,6 +6,11 @@ export const api = Axios.create({
   baseURL,
   timeout: 8000
 })
+export const RMApi = Axios.create({
+baseURL: 'https://rickandmortyapi.com',
+  timeout: 5000
+})
+
 
 api.interceptors.request.use(config => config, handleAxiosError)
 api.interceptors.response.use(response => response, handleAxiosError)
