@@ -23,7 +23,12 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <CharacterList character={AppState.character} />
+      <div className="container">
+
+        <div className="row">
+          <CharacterList character={AppState.character} />
+        </div>
+      </div>
     </div>
   )
 }
