@@ -4,6 +4,8 @@ import Pop from "../utils/Pop";
 import { characterService } from "../services/CharecterService";
 import { useEffect } from "react";
 import CharacterList from "../components/CharacterList";
+import Modal from "../components/Modal";
+import CharacterDetails from "../components/CharacterDetails";
 
 
 function HomePage() {
@@ -21,6 +23,13 @@ function HomePage() {
     getCharacters()
   }, [])
 
+  const CharacterModalContent = () => (
+    AppState.activeCharacter ?
+      <CharacterDetails character={AppState.activeCharacter} />
+      :
+      <></>
+  )
+
   return (
     <div className="home-page">
       <div className="container">
@@ -29,6 +38,11 @@ function HomePage() {
           <CharacterList character={AppState.character} />
         </div>
       </div>
+
+      <Modal id='characterModal' name={AppState.activeCharacter?.name || ''} >
+        <CharacterModalContent />
+      </Modal>
+
     </div>
   )
 }

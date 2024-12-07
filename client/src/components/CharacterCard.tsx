@@ -14,10 +14,10 @@ export default function CharacterCard({ character }: CharacterCardProps) {
   }
 
   return (
-    <div className="CharacterCard card pb-4" data-bs-toggle="modal" data-bs-target="#characterModal" onClick={setActive}>
+    <div className="CharacterCard card mb-4" data-bs-toggle="modal" data-bs-target="#characterModal" onClick={setActive}>
       <img className='img-fluid rounded shadow' src={character.image} alt={character.name} title={character.name} />
       <div className="card-img-overlay d-flex flex-column justify-content-end">
-        <p style={textShadow} className="card-text text-light  fs-4 m-1">{character.name}</p>
+        <p style={textShadow} className="card-text text-light fs-4 m-1">{character.name}</p>
       </div>
 
     </div >
