@@ -7,8 +7,8 @@ export type CharacterData = {
   gender: string
   image: string
   created: string
-
 }
+
 export class Character {
   id: string
   name: string

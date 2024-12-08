@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import CharacterList from "../components/CharacterList";
 import Modal from "../components/Modal";
 import CharacterDetails from "../components/CharacterDetails";
+import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
 
 
 function HomePage() {
@@ -33,6 +35,10 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="container">
+        <div className="row my-4">
+          <SearchBar />
+          <Pagination />
+        </div>
 
         <div className="row">
           <CharacterList character={AppState.character} />

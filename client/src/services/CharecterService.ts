@@ -1,47 +1,49 @@
 import { AppState } from "../AppState"
-import { Character } from "../models/Charecter"
+import { Character, CharacterData } from "../models/Charecter"
 import { logger } from "../utils/Logger"
 import { RMApi } from "./AxiosService"
 
 type CharacterResponse = {
+  pages: number
+  info: any
   results: CharacterData[]
   total_pages: number
   total_results: number
-  info: number
-  pages: number
+  id: string
 }
+
 class CharacterService {
-  // async changeSearchPage(pageNumber: string, characterQuery: string) {
-  //   const response = await RMApi.get(`api/character/?page=${pageNumber}&name=${characterQuery}`)
-  //   AppState.characterQuery = characterQuery
-  //   this.handleResponseData(response.data)
-  // }
-
-  // async searchCharacter(characterQuery: string) {
-  //   const response = await RMApi.get(`api/character/?name=${characterQuery}`)
-  //   console.log('SEACRHED character 🔍', response.data.results);
-  //   AppState.characterQuery = characterQuery
-  //   this.handleResponseData(response.data)
-  // }
-
-  clearCharacter() {
-    AppState.character = []
-    AppState.currentPage = 0
-    AppState.totalPages = 0
+  async changeSearchPage(pageNumber: number, characterQuery: string) {
+    const response = await RMApi.get(`api/character/?page=${pageNumber}&name=${characterQuery}`)
+    AppState.characterQuery = characterQuery
+    this.handleResponseData(response.data)
   }
 
-  clearSearchQuery() {
-    AppState.characterQuery = ''
+  async searchCharacter(characterQuery: string) {
+    const response = await RMApi.get(`api/character/?name=${characterQuery}`)
+    console.log('SEACRHED character 🔍', response.data.results);
+    AppState.characterQuery = characterQuery
+    // AppState.totalPages = response.data
+    this.handleResponseData(response.data)
   }
 
-  // async changePage(pageNumber: string) {
-
-  //   const response = await RMApi.get(`api/character/?page=${pageNumber}`)
-  //   console.log('CHANGED PAGE 🧍', response.data);
-  //   this.handleResponseData(response.data)
-
+  // clearCharacter() {
+  //   AppState.character = []
+  //   AppState.currentPage = 0
+  //   AppState.totalPages = 0
   // }
 
+  // clearSearchQuery() {
+  //   AppState.characterQuery = ''
+  // }
+
+  async changePage(pageNumber: number) {
+
+    const response = await RMApi.get(`api/character/?page=${pageNumber}`)
+    console.log('CHANGED PAGE 🧍', response.data);
+    this.handleResponseData(response.data)
+
+  }
 
   async getAllCharacter() {
     const response = await RMApi.get('api/character')
@@ -60,12 +62,14 @@ class CharacterService {
 
   }
 
-  // handleResponseData(responseData: CharacterResponse) {
-  //   const characters = responseData.results.map((characterData: CharacterData) => new Character(characterData))
-  //   AppState.character = characters
-  //   AppState.totalPages = responseData.pages
-  //   AppState.totalResults = responseData.total_results
-  // }
+  handleResponseData(responseData: CharacterResponse) {
+    const characters = responseData.results.map((characterData: CharacterData) => new Character(characterData))
+    console.log(characters)
+    AppState.character = characters
+    AppState.currentPage = responseData.info.pages
+    AppState.totalPages = responseData.info.total_pages
+    AppState.totalResults = responseData.total_results
+  }
 }
 
 
