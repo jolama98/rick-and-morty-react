@@ -12,7 +12,7 @@ class ObservableAppState {
 
   character: Character[] = []
   activeCharacter: Character | null = null
-  currentPage: number = 0
+  currentPage: number = 1
   totalPages: number = 0
   totalResults: number = 0
   characterQuery: string = ''

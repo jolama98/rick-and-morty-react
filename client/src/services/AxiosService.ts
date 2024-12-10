@@ -7,7 +7,7 @@ export const api = Axios.create({
   timeout: 8000
 })
 export const RMApi = Axios.create({
-baseURL: 'https://rickandmortyapi.com',
+  baseURL: 'https://rickandmortyapi.com',
   timeout: 5000
 })
 
